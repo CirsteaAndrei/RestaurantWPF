@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Restaurant.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,12 @@ namespace Restaurant.Models
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Table> Tables { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
     }
 }
