@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Restaurant.Helpers;
+using Restaurant.Models;
+using Restaurant.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +22,13 @@ namespace Restaurant.Views
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class Login : Window
     {
         public Login()
         {
             InitializeComponent();
+            var unitOfWork = ServiceLocator.ServiceProvider.GetService<UnitOfWork>();
+            DataContext = new LoginViewModel(unitOfWork);
         }
     }
 }
