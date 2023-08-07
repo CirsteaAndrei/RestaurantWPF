@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace Restaurant.ViewModels
 {
-    class NavigationVM : ViewModelBase
+    class AdminNavigationVM : ViewModelBase
     {
         private object _currentView;
         public object CurrentView
@@ -26,7 +26,7 @@ namespace Restaurant.ViewModels
         private void ManageUsers(object obj) => CurrentView = new AdminManageUsersVM();
         private void ManageTables(object obj) => CurrentView = new AdminManageTablesVM();
         private void GenerateReports(object obj) => CurrentView = new AdminGenerateReportsVM();
-        public NavigationVM()
+        public AdminNavigationVM()
         {
             ManageUsersCommand = new RelayCommand(ManageUsers);
             ManageTablesCommand = new RelayCommand(ManageTables);

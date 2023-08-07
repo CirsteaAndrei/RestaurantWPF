@@ -9,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Restaurant.ViewModels;
 
 namespace Restaurant
 {
@@ -31,6 +32,7 @@ namespace Restaurant
             services.AddTransient<TablesRepository>();
             services.AddTransient<UsersRepository>();
             services.AddTransient<UnitOfWork>();
+            services.AddSingleton<MainNavigationVM>();
 
             ServiceLocator.Initialize(services);
         }

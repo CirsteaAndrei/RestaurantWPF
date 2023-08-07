@@ -3,6 +3,14 @@
                     xmlns:vm="clr-namespace:Restaurant.ViewModels"
                     xmlns:view="clr-namespace:Restaurant.Views">
 
+    <DataTemplate DataType="{x:Type vm:LoginViewModel }">
+        <view:Login/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:AdminNavigationVM}">
+        <view:AdminDashboard/>
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type vm:AdminManageUsersVM}">
         <view:AdminManageUsersView />
     </DataTemplate>
@@ -14,5 +22,6 @@
     <DataTemplate DataType="{x:Type vm:AdminGenerateReportsVM}">
         <view:AdminGenerateReportsView />
     </DataTemplate>
+    
 
 </ResourceDictionary>

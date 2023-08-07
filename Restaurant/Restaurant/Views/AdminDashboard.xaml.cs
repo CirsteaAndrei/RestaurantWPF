@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Restaurant.Helpers;
-using Restaurant.Models;
-using Restaurant.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +16,11 @@ using System.Windows.Shapes;
 namespace Restaurant.Views
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for AdminDashboard.xaml
     /// </summary>
-    public partial class Login : UserControl
+    public partial class AdminDashboard : UserControl
     {
-        public Login()
+        public AdminDashboard()
         {
             InitializeComponent();
         }

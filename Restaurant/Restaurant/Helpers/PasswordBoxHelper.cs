@@ -10,6 +10,7 @@ namespace Restaurant.Helpers
 {
     public static class PasswordBoxHelper
     {
+        private static bool _isUpdating = false;
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.RegisterAttached("Password", typeof(string), typeof(PasswordBoxHelper), new FrameworkPropertyMetadata(string.Empty, OnPasswordPropertyChanged));
 
@@ -25,12 +26,16 @@ namespace Restaurant.Helpers
 
         private static void OnPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
+            if (_isUpdating) return;
+
             PasswordBox passwordBox = d as PasswordBox;
             passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
 
             if (e.NewValue != null)
             {
+                _isUpdating = true;
                 passwordBox.Password = e.NewValue.ToString();
+                _isUpdating = false;
             }
 
             passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
@@ -39,6 +44,7 @@ namespace Restaurant.Helpers
         private static void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             PasswordBox passwordBox = sender as PasswordBox;
+            System.Diagnostics.Debug.WriteLine($"Password changed to: {passwordBox.Password}");
             SetPassword(passwordBox, passwordBox.Password);
         }
     }

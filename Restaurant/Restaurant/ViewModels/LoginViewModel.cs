@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Restaurant.Models.Enums;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Restaurant.ViewModels
 {
@@ -14,6 +15,7 @@ namespace Restaurant.ViewModels
     {
         private string _username;
         private string _password;
+        private MainNavigationVM _mainNavigationVM;
         private readonly UnitOfWork _unitOfWork;
 
         public string Username
@@ -39,9 +41,9 @@ namespace Restaurant.ViewModels
         public ICommand LoginCommand { get; }
         public ICommand CancelCommand { get; }
 
-        public LoginViewModel(UnitOfWork unitOfWork)
+        public LoginViewModel()
         {
-            _unitOfWork = unitOfWork;
+            _unitOfWork = ServiceLocator.ServiceProvider.GetService<UnitOfWork>();
             LoginCommand = new RelayCommand(Login, CanLogin);
             CancelCommand = new RelayCommand(Cancel);
         }
@@ -61,10 +63,20 @@ namespace Restaurant.ViewModels
                 var employee = _unitOfWork.Employees.GetById(user.EmployeeId);
                 if (employee != null)
                 {
-                    if (employee.EmployeeRole == EmployeeRole.Admin)
+                    if (employee != null)
                     {
-                        MainWindow mainWindow = new MainWindow();
-                        mainWindow.Show();
+                        if (employee.EmployeeRole == EmployeeRole.Admin)
+                        {
+                            // Navigate to Admin dashboard
+                            var mainNavVM = ServiceLocator.ServiceProvider.GetService<MainNavigationVM>();
+                            mainNavVM.CurrentView = new AdminNavigationVM();
+                        }
+                        else if (employee.EmployeeRole == EmployeeRole.Waiter)
+                        {
+                            // Navigate to Waiter dashboard
+                            var mainNavVM = ServiceLocator.ServiceProvider.GetService<MainNavigationVM>();
+                            mainNavVM.CurrentView = new WaiterDashboardVM();
+                        }
                     }
                 }
             }

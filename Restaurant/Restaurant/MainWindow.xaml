@@ -16,7 +16,7 @@
         Background="Transparent">
 
     <Window.DataContext>
-        <vm:NavigationVM />
+        <vm:MainNavigationVM />
     </Window.DataContext>
 
     <Grid>
@@ -26,97 +26,8 @@
         <Border Background="#212529"
                 CornerRadius="20" />
 
-        <Grid>
-
-            <!--// Base Grid //-->
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="228" />
-                <ColumnDefinition Width="622" />
-            </Grid.ColumnDefinitions>
-
-            <!--// Navigation Panel //-->
-
-            <Grid HorizontalAlignment="Left"
-                  Width="228">
-
-                <Border Background="#272B2F"
-                        CornerRadius="20,0,0,20" />
-
-                <StackPanel Height="400"
-                            Width="228">
-
-                    <!--// Home //-->
-
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ManageUsersCommand}"
-                              IsChecked="True">
-
-                        <Grid>
-
-                            <Image Source="Images/img_customer.png"
-                                   Style="{StaticResource Image_Style}" />
-
-                            <TextBlock Text="Users"
-                                       Style="{StaticResource Text_Style}" 
-                                       HorizontalAlignment="Left" Margin="70, 0, 0, 0"/>
-
-                        </Grid>
-
-                    </Menu:Btn>
-
-                    <!--// Customer //-->
-
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding ManageTablesCommand}">
-
-                        <Grid>
-
-                            <Image Source="Images/img_product.png"
-                                   Style="{StaticResource Image_Style}" />
-
-                            <TextBlock Text="Tables"
-                                       Style="{StaticResource Text_Style}" 
-                                       HorizontalAlignment="Left" Margin="70, 0, 0, 0"/>
-
-                        </Grid>
-
-                    </Menu:Btn>
-
-                    <!--// Products //-->
-
-                    <Menu:Btn Style="{StaticResource BtnStyle}"
-                              Command="{Binding GenerateReportsCommand}">
-
-                        <Grid>
-
-                            <Image Source="Images/img_transaction.png"
-                                   Style="{StaticResource Image_Style}" />
-
-                            <TextBlock Text="Reports"
-                                       Style="{StaticResource Text_Style}" 
-                                       HorizontalAlignment="Left" Margin="70, 0, 0, 0"/>
-
-                        </Grid>
-
-                    </Menu:Btn>
-                    
-                </StackPanel>
-
-            </Grid>
-
-            <Grid Grid.Column="1">
-
-                <ContentControl x:Name="Pages"
+        <ContentControl x:Name="Pages"
                                 Content="{Binding CurrentView}" />
-
-            </Grid>
-
-        </Grid>
-
-        <Button x:Name="CloseApp"
-                Style="{StaticResource ExitApp}"
-                Click="CloseApp_Click" />
 
     </Grid>
 
