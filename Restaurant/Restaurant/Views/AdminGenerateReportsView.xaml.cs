@@ -18,7 +18,7 @@ namespace Restaurant.Views
     /// <summary>
     /// Interaction logic for AdminGenerateReportsView.xaml
     /// </summary>
-    public partial class AdminGenerateReportsView : Page
+    public partial class AdminGenerateReportsView : UserControl
     {
         public AdminGenerateReportsView()
         {

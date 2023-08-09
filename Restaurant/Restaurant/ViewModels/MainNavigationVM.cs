@@ -23,6 +23,8 @@ namespace Restaurant.ViewModels
         public ICommand AdminDashboardCommand { get; set;}
         public ICommand WaiterDashboardCommand { get; set; }
 
+
+
         private void Login(object obj) => CurrentView = new LoginViewModel();
         private void AdminDashboard(object obj) => CurrentView = new AdminNavigationVM();
         private void WaiterDashboard(object obj) => CurrentView = new WaiterDashboardVM();

@@ -18,7 +18,7 @@ namespace Restaurant.Views
     /// <summary>
     /// Interaction logic for AdminManageTables.xaml
     /// </summary>
-    public partial class AdminManageTablesView : Page
+    public partial class AdminManageTablesView : UserControl
     {
         public AdminManageTablesView()
         {

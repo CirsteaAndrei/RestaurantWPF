@@ -25,16 +25,22 @@ namespace Restaurant
             var services = new ServiceCollection();
 
             services.AddSingleton<AppDbContext>();
+            services.AddSingleton<UnitOfWork>();
             services.AddTransient<EmployeesRepository>();
             services.AddTransient<OrdersRepository>();
             services.AddTransient<OrderDetailsRepository>();
             services.AddTransient<ProductsRepository>();
             services.AddTransient<TablesRepository>();
             services.AddTransient<UsersRepository>();
-            services.AddTransient<UnitOfWork>();
             services.AddSingleton<MainNavigationVM>();
-
             ServiceLocator.Initialize(services);
+
+            MainWindow window = new MainWindow();
+            MainNavigationVM navigationVM = ServiceLocator.ServiceProvider.GetService<MainNavigationVM>();
+            window.DataContext = navigationVM;
+            window.Show();
+
+            
         }
     }
 }

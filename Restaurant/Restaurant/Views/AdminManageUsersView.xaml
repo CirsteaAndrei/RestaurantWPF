@@ -9,6 +9,8 @@
       Style="{StaticResource Page_Style}">
 
     <Grid>
-        
+        <TextBlock Style="{StaticResource Text_Style}">
+            adminmanageUsers
+        </TextBlock>
     </Grid>
 </UserControl>
