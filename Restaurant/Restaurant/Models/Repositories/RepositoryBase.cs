@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Restaurant.Models.Entities;
+using System.Collections.ObjectModel;
 
 namespace Restaurant.Models.Repositories
 {
@@ -55,6 +56,16 @@ namespace Restaurant.Models.Repositories
         protected IQueryable<T> GetRecords()
         {
             return _dbSet.AsQueryable<T>();
+        }
+
+        public ObservableCollection<T> ListToObsCollection(List<T> listObjects)
+        {
+            ObservableCollection<T> result = new ObservableCollection<T>();
+            foreach (var obj in listObjects)
+            {
+                result.Add(obj);
+            }
+            return result;
         }
     }
 }

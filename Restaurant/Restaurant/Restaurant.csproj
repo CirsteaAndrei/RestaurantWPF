@@ -40,10 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\customer_page.png" />
     <Resource Include="Images\home_page.png" />
     <Resource Include="Images\img_customer.png" />

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Restaurant.Models.Enums;
 
 namespace Restaurant.Models.Repositories
 {
@@ -13,6 +14,21 @@ namespace Restaurant.Models.Repositories
         public TablesRepository(AppDbContext dbContext) : base(dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public List<Table> GetAllWithEmployeeData()
+        {
+            var tables = GetAll();
+            foreach (var table in tables)
+            {
+                table.Employee = dbContext.Employees.FirstOrDefault(e => e.Id == table.EmployeeId) ?? new Employee
+                {
+                    FirstName = "Unassigned",
+                    LastName = "Employee",
+                    EmployeeRole = EmployeeRole.Waiter 
+                };
+            }
+            return tables;
         }
     }
 }

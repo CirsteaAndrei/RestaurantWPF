@@ -4,13 +4,86 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Restaurant.Views"
+      xmlns:vm="clr-namespace:Restaurant.ViewModels"
+      xmlns:localConverter="clr-namespace:Restaurant.Converters"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="600"
       Style="{StaticResource Page_Style}">
 
-    <Grid>
-        <TextBlock Style="{StaticResource Text_Style}">
-            adminmanageUsers
-        </TextBlock>
-    </Grid>
+    <UserControl.DataContext>
+        <vm:AdminManageUsersVM/>
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+        <!-- ... other resources ... -->
+        <localConverter:EmployeeRoleToIndexConverter x:Key="roleToIndexConverter" />
+    </UserControl.Resources>
+
+    <StackPanel HorizontalAlignment="Center">
+        <StackPanel.Resources>
+            <localConverter:UserConvert x:Key="userConvert" />
+        </StackPanel.Resources>
+        <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+            <Button Content="Adauga" Style="{StaticResource NormalButton}" Command="{Binding AddUserCommand}" Margin="15,0,15,0">
+                <Button.CommandParameter>
+                    <MultiBinding Converter="{StaticResource userConvert}">
+                        <Binding ElementName="txtFirstName" Path="Text"/>
+                        <Binding ElementName="txtLastName" Path="Text"/>
+                        <Binding ElementName="roleComboBox" Path="SelectedItem"/>
+                        <Binding ElementName="txtUserName" Path="Text"/>
+                        <Binding ElementName="txtPassword" Path="Text"/>
+                    </MultiBinding>
+                </Button.CommandParameter>
+            </Button>
+            <Button Content="Modifica" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+                    Command="{Binding UpdateUserCommand}" 
+                    CommandParameter="{Binding ElementName=usersGrid, Path=SelectedItem}" />
+            <Button Content="Sterge" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+                    Command="{Binding DeleteUserCommand}" 
+                    CommandParameter="{Binding ElementName=usersGrid, Path=SelectedItem}" />
+        </WrapPanel>
+        <StackPanel HorizontalAlignment="Center">
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" Style="{StaticResource Label_Style}">First Name:</Label>
+            <TextBox Name="txtFirstName" Width="200" HorizontalAlignment="Left"
+                     Text ="{Binding ElementName=usersGrid, Path=SelectedItem.Employee.FirstName, UpdateSourceTrigger=PropertyChanged}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" Style="{StaticResource Label_Style}">Last Name:</Label>
+            <TextBox Name="txtLastName" Width="200" HorizontalAlignment="Left"
+                         Text ="{Binding ElementName=usersGrid, Path=SelectedItem.Employee.LastName, UpdateSourceTrigger=PropertyChanged}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" Style="{StaticResource Label_Style}">Employee Role:</Label>
+            <ComboBox Name="roleComboBox" Width="200"
+                ItemsSource="{Binding EmployeeRoles}"
+                SelectedIndex="{Binding ElementName=usersGrid, Path=SelectedItem.Employee.EmployeeRole, Converter={StaticResource roleToIndexConverter}}"/>
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" Style="{StaticResource Label_Style}">Username:</Label>
+            <TextBox Name="txtUserName" Width="200" HorizontalAlignment="Left" 
+                     Text ="{Binding ElementName=usersGrid, Path=SelectedItem.UserName, UpdateSourceTrigger=PropertyChanged}" />
+        </WrapPanel>
+        <WrapPanel Margin="0,15,0,0">
+            <Label Width="150" Style="{StaticResource Label_Style}">Password:</Label>
+            <TextBox Name="txtPassword" Width="200" HorizontalAlignment="Left" 
+                     Text ="{Binding ElementName=usersGrid, Path=SelectedItem.Password, UpdateSourceTrigger=PropertyChanged}" />
+        </WrapPanel>
+        <WrapPanel>
+            <Label Name="lblMessage" Content="{Binding ErrorMessage}" Height="30" FontSize="15" Foreground="Red"/>
+        </WrapPanel>
+        </StackPanel>
+        <DataGrid Style="{StaticResource DataGridStyle1}" CellStyle="{StaticResource DataGridCellStyle1}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" Name="usersGrid" 
+                  Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding UsersList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn CanUserResize="False" Header="Username" Binding="{Binding UserName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Password" Binding="{Binding Password}"/>
+                <DataGridTextColumn CanUserResize="False" Header="First Name" Binding="{Binding Employee.FirstName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Last Name" Binding="{Binding Employee.LastName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Employee Role" Binding="{Binding Employee.EmployeeRole}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>

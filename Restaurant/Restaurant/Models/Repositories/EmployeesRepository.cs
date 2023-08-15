@@ -14,5 +14,11 @@ namespace Restaurant.Models.Repositories
         {
             this.dbContext = dbContext;
         }
+
+        public List<Employee> GetAllWaiters()
+        {
+            var employees = GetAll();
+            return employees.Where(e => e.EmployeeRole == Enums.EmployeeRole.Waiter).ToList();
+        }
     }
 }

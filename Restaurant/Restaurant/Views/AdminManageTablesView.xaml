@@ -8,9 +8,30 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource Page_Style}">
 
-    <Grid>
-        <TextBlock Style="{StaticResource Text_Style}">
-                Adminmanagetables
-            </TextBlock>
-    </Grid>
+    <UserControl.DataContext>
+        <vm:AdminManageTablesVM/>
+    </UserControl.DataContext>
+    
+    <StackPanel>
+        <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+            <Button Content="Add" Style="{StaticResource NormalButton}" Command="{Binding AddTableCommand}" Margin="15,0,15,0">
+            </Button>
+            <Button Content="Assign" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+                    Command="{Binding AssignEmployeeCommand}" 
+                    CommandParameter="{Binding ElementName=tablesGrid, Path=SelectedItem}" />
+            <Button Content="Delete" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+                    Command="{Binding DeleteTableCommand}" 
+                    CommandParameter="{Binding ElementName=tablesGrid, Path=SelectedItem}" />
+        </WrapPanel>
+        <DataGrid Style="{StaticResource DataGridStyle1}" CellStyle="{StaticResource DataGridCellStyle1}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" Name="usersGrid" 
+                  Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding TablesList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn CanUserResize="False" Header="Table Nr." Binding="{Binding UserName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Seats Total" Binding="{Binding Password}"/>
+                <DataGridTextColumn CanUserResize="False" Header="Seats Taken" Binding="{Binding Employee.FirstName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Waiter Assigned" Binding="{Binding Employee.LastName}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>
