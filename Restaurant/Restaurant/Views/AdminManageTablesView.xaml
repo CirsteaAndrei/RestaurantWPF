@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:Restaurant.ViewModels"
       xmlns:local="clr-namespace:Restaurant.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -14,7 +15,8 @@
     
     <StackPanel>
         <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
-            <Button Content="Add" Style="{StaticResource NormalButton}" Command="{Binding AddTableCommand}" Margin="15,0,15,0">
+            <Button Content="Add" Style="{StaticResource NormalButton}" 
+                    Command="{Binding AddTableCommand}" Margin="15,0,15,0">
             </Button>
             <Button Content="Assign" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
                     Command="{Binding AssignEmployeeCommand}" 
