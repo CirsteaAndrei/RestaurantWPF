@@ -78,6 +78,21 @@
                     <!--// Products //-->
 
                     <Menu:Btn Style="{StaticResource BtnStyle}"
+                              Command="{Binding ManageProductsCommand}">
+
+                        <Grid>
+
+                            <Image Source="../Images/img_order.png"
+                                   Style="{StaticResource Image_Style}" />
+
+                            <TextBlock Text="Products"
+                                       Style="{StaticResource Text_Style}" 
+                                       HorizontalAlignment="Left" Margin="70, 0, 0, 0"/>
+
+                        </Grid>
+
+                    </Menu:Btn>
+                    <Menu:Btn Style="{StaticResource BtnStyle}"
                               Command="{Binding GenerateReportsCommand}">
 
                         <Grid>

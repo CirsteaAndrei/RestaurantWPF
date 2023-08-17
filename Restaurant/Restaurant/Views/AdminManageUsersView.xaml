@@ -25,7 +25,7 @@
             <localConverter:UserConvert x:Key="userConvert" />
         </StackPanel.Resources>
         <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
-            <Button Content="Adauga" Style="{StaticResource NormalButton}" Command="{Binding AddUserCommand}" Margin="15,0,15,0">
+            <Button Content="Add" Style="{StaticResource NormalButton}" Command="{Binding AddUserCommand}" Margin="15,0,15,0">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource userConvert}">
                         <Binding ElementName="txtFirstName" Path="Text"/>
@@ -36,10 +36,10 @@
                     </MultiBinding>
                 </Button.CommandParameter>
             </Button>
-            <Button Content="Modifica" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+            <Button Content="Edit" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
                     Command="{Binding UpdateUserCommand}" 
                     CommandParameter="{Binding ElementName=usersGrid, Path=SelectedItem}" />
-            <Button Content="Sterge" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+            <Button Content="Delete" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
                     Command="{Binding DeleteUserCommand}" 
                     CommandParameter="{Binding ElementName=usersGrid, Path=SelectedItem}" />
         </WrapPanel>

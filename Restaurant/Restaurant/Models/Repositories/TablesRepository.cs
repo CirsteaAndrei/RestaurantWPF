@@ -21,12 +21,7 @@ namespace Restaurant.Models.Repositories
             var tables = GetAll();
             foreach (var table in tables)
             {
-                table.Employee = dbContext.Employees.FirstOrDefault(e => e.Id == table.EmployeeId) ?? new Employee
-                {
-                    FirstName = "Unassigned",
-                    LastName = "Employee",
-                    EmployeeRole = EmployeeRole.Waiter 
-                };
+                table.Employee = dbContext.Employees.FirstOrDefault(e => e.Id == table.EmployeeId);
             }
             return tables;
         }

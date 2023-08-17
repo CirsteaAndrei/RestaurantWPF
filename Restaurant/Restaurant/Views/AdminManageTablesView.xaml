@@ -12,27 +12,45 @@
     <UserControl.DataContext>
         <vm:AdminManageTablesVM/>
     </UserControl.DataContext>
-    
+
     <StackPanel>
+        <Popup Name="AddTablePopup" IsOpen="{Binding IsAddTablePopupOpen}" Placement="Center" Width="300" Height="150">
+            <Border Background="White" BorderBrush="Black" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Enter number of seats:" Margin="10" />
+                    <TextBox Text="{Binding NewTableSeatsTotal}" Margin="10" />
+                    <Button Content="OK" Command="{Binding ConfirmAddTableCommand}" Margin="10" />
+                </StackPanel>
+            </Border>
+        </Popup>
+        <Popup Name="AssignEmployeePopup" IsOpen="{Binding IsAssignEmployeePopupOpen}" Placement="Center" Width="300" Height="150">
+            <Border Background="White" BorderBrush="Black" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Select a waiter:" Margin="10" />
+                    <ComboBox ItemsSource="{Binding WaitersList}" DisplayMemberPath="FirstName" SelectedItem="{Binding SelectedWaiter}" Margin="10" />
+                    <Button Content="OK" Command="{Binding ConfirmAssignEmployeeCommand}" Margin="10" />
+                </StackPanel>
+            </Border>
+        </Popup>
         <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
             <Button Content="Add" Style="{StaticResource NormalButton}" 
                     Command="{Binding AddTableCommand}" Margin="15,0,15,0">
             </Button>
-            <Button Content="Assign" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
-                    Command="{Binding AssignEmployeeCommand}" 
-                    CommandParameter="{Binding ElementName=tablesGrid, Path=SelectedItem}" />
+            <Button Content="Assign" Style="{StaticResource NormalButton}" 
+        Command="{Binding AssignEmployeeCommand}" CommandParameter="{Binding SelectedItem, ElementName=tablesGrid}" Margin="15,0,15,0">
+            </Button>
             <Button Content="Delete" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
                     Command="{Binding DeleteTableCommand}" 
                     CommandParameter="{Binding ElementName=tablesGrid, Path=SelectedItem}" />
         </WrapPanel>
-        <DataGrid Style="{StaticResource DataGridStyle1}" CellStyle="{StaticResource DataGridCellStyle1}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" Name="usersGrid" 
+        <DataGrid Style="{StaticResource DataGridStyle1}" CellStyle="{StaticResource DataGridCellStyle1}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" Name="tablesGrid" 
                   Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
                   ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding TablesList}">
             <DataGrid.Columns>
-                <DataGridTextColumn CanUserResize="False" Header="Table Nr." Binding="{Binding UserName}" />
-                <DataGridTextColumn CanUserResize="False" Header="Seats Total" Binding="{Binding Password}"/>
-                <DataGridTextColumn CanUserResize="False" Header="Seats Taken" Binding="{Binding Employee.FirstName}" />
-                <DataGridTextColumn CanUserResize="False" Header="Waiter Assigned" Binding="{Binding Employee.LastName}" />
+                <DataGridTextColumn Header="Table Nr." Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Seats Total" Binding="{Binding SeatsTotal}" />
+                <DataGridTextColumn Header="Seats Taken" Binding="{Binding SeatsTaken}" />
+                <DataGridTextColumn Header="Waiter Assigned" Binding="{Binding Employee.FirstName}" />
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>
