@@ -25,5 +25,11 @@ namespace Restaurant.Models.Repositories
             }
             return tables;
         }
+
+        public List<Table> GetTablesForEmployee(int employeeId)
+        {
+            var tables = GetAll();
+            return tables.Where(t=> t.EmployeeId==employeeId).ToList();
+        }
     }
 }

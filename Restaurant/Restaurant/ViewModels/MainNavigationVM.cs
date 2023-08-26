@@ -20,20 +20,16 @@ namespace Restaurant.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
-        public ICommand AdminDashboardCommand { get; set;}
-        public ICommand WaiterDashboardCommand { get; set; }
+
 
 
 
         private void Login(object obj) => CurrentView = new LoginViewModel();
-        private void AdminDashboard(object obj) => CurrentView = new AdminNavigationVM();
-        private void WaiterDashboard(object obj) => CurrentView = new WaiterDashboardVM();
+
 
         public MainNavigationVM()
         {
             LoginCommand = new RelayCommand(Login);
-            AdminDashboardCommand = new RelayCommand(AdminDashboard);
-            WaiterDashboardCommand = new RelayCommand(WaiterDashboard);
 
             CurrentView = new LoginViewModel();
         }

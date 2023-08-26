@@ -26,6 +26,10 @@
     <DataTemplate DataType="{x:Type vm:AdminGenerateReportsVM}">
         <view:AdminGenerateReportsView />
     </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:WaiterDashboardVM}">
+        <view:WaiterDashboard/>
+    </DataTemplate>
     
 
 </ResourceDictionary>

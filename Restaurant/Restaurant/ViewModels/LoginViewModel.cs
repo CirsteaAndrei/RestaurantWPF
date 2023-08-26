@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Restaurant.Models.Enums;
 using Microsoft.Extensions.DependencyInjection;
+using Restaurant.Views;
 
 namespace Restaurant.ViewModels
 {
@@ -75,7 +76,10 @@ namespace Restaurant.ViewModels
                         {
                             // Navigate to Waiter dashboard
                             var mainNavVM = ServiceLocator.ServiceProvider.GetService<MainNavigationVM>();
-                            mainNavVM.CurrentView = new WaiterDashboardVM();
+                            WaiterDashboardVM waiterDashboardVm = new WaiterDashboardVM(employee.Id);
+                            WaiterDashboard view = new WaiterDashboard();
+                            view.DataContext = waiterDashboardVm;
+                            mainNavVM.CurrentView = waiterDashboardVm;
                         }
                     }
                 }
