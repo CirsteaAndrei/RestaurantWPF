@@ -12,7 +12,10 @@ namespace Restaurant.Models.Entities
         public int SeatsTotal { get; set; }
         public int SeatsTaken { get; set; }
         public int? EmployeeId { get; set; }
+        public int? OrderId { get; set; }
+        public Order Order { get; set; }
         private Employee? employee { get; set; }
+
 
         public Employee Employee
         {
