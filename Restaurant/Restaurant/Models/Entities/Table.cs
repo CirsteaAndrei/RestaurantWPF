@@ -10,7 +10,7 @@ namespace Restaurant.Models.Entities
     public class Table : BaseEntity, INotifyPropertyChanged
     {
         public int SeatsTotal { get; set; }
-        public int SeatsTaken { get; set; }
+        private int seatsTaken { get; set; }
         public int? EmployeeId { get; set; }
         public int? OrderId { get; set; }
         public Order? Order { get; set; }
@@ -24,6 +24,19 @@ namespace Restaurant.Models.Entities
             {
                 employee = value;
                 OnPropertyChanged("Employee");
+            }
+        }
+
+        public int SeatsTaken
+        {
+            get
+            {
+                return seatsTaken;
+            }
+            set
+            {
+                seatsTaken = value;
+                OnPropertyChanged("SeatsTaken");
             }
         }
 

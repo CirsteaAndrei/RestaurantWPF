@@ -14,5 +14,15 @@ namespace Restaurant.Models.Repositories
         {
             this.dbContext = dbContext;
         }
+
+        public IEnumerable<OrderDetail> GetByOrderIdWithProductData(int orderId)
+        {
+            var orderDetailsList = dbContext.OrderDetails.Where(od => od.OrderId == orderId).ToList();
+            foreach (var orderDetails in orderDetailsList)
+            {
+                orderDetails.Product = dbContext.Products.FirstOrDefault(p => p.Id == orderDetails.ProductId);
+            }
+            return orderDetailsList;
+        }
     }
 }

@@ -7,11 +7,22 @@
              xmlns:vm="clr-namespace:Restaurant.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
 
-        <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+    <StackPanel  Margin="0,30,0,0">
+        
+        <Popup Name="SetSeatsTakenPopup" IsOpen="{Binding IsSetSeatsTakenPopupOpen}" Placement="Center" Width="300" Height="150">
+            <Border Background="White" BorderBrush="Black" BorderThickness="1">
+                <StackPanel>
+                    <TextBlock Text="Enter number of seats taken:" Margin="10" />
+                    <TextBox Text="{Binding SeatsTaken}" Margin="10" />
+                    <Button Content="OK" Command="{Binding ConfirmSetSeatsTakenCommand}" CommandParameter="{Binding ElementName=tablesGrid, Path=SelectedItem}" Margin="10" />
+                </StackPanel>
+            </Border>
+        </Popup>
+        
+        <WrapPanel HorizontalAlignment="Center">
             <Button Content="Set Taken" Style="{StaticResource NormalButton}" 
-                    Command="{Binding SetTableTakenCommand}" CommandParameter="{Binding SelectedItem, ElementName=tablesGrid}" Margin="15,0,15,0">
+                    Command="{Binding SetSeatsTakenCommand}" CommandParameter="{Binding SelectedItem, ElementName=tablesGrid}" Margin="15,0,15,0">
             </Button>
             <Button Content="Free Table" Style="{StaticResource NormalButton}" 
         Command="{Binding FreeTableCommand}" CommandParameter="{Binding SelectedItem, ElementName=tablesGrid}" Margin="15,0,15,0">
@@ -30,5 +41,7 @@
                 <DataGridTextColumn Header="Seats Taken" Binding="{Binding SeatsTaken}" />
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Logout" Command="{Binding LogoutCommand}" Style="{StaticResource NormalButton}" Margin="10"/>
+
     </StackPanel>
 </UserControl>

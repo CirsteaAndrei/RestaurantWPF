@@ -11,6 +11,9 @@ namespace Restaurant.Models.Entities
     {
         public OrderStatusEnum OrderStatusEnum { get; set; }
         public float? TotalPrice { get; set; }
+        public int EmployeeId { get; set; }
+        public Employee? Employee { get; set; }
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
     }
 }

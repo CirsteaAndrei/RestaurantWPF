@@ -29,6 +29,10 @@
 
     <DataTemplate DataType="{x:Type vm:WaiterDashboardVM}">
         <view:WaiterDashboard/>
+    </DataTemplate> 
+    
+    <DataTemplate DataType="{x:Type vm:WaiterManageOrdersVM}">
+        <view:WaiterManageOrdersView/>
     </DataTemplate>
     
 
