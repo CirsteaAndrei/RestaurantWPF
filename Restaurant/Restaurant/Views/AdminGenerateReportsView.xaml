@@ -8,9 +8,28 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Style="{StaticResource Page_Style}">
 
-    <Grid>
-        <TextBlock Style="{StaticResource Text_Style}">
-            admingenerateReports
-        </TextBlock>
-    </Grid>
+    <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+        <WrapPanel HorizontalAlignment="Center">
+            <Button Content="View Orders" Style="{StaticResource NormalButton}" 
+                    Command="{Binding SetSeatsTakenCommand}" CommandParameter="{Binding SelectedItem, ElementName=tablesGrid}" Margin="15,0,15,0">
+            </Button>
+            <Button Content="Generate Daily" Style="{StaticResource NormalButton}" 
+        Command="{Binding FreeTableCommand}" CommandParameter="{Binding SelectedItem, ElementName=tablesGrid}" Margin="15,0,15,0">
+            </Button>
+            <Button Content="Generate Monthly" Style="{StaticResource NormalButton}" Margin="15,0,15,0"
+                    Command="{Binding ViewOrderCommand}" 
+                    CommandParameter="{Binding ElementName=tablesGrid, Path=SelectedItem}" />
+        </WrapPanel>
+        <DataGrid Style="{StaticResource DataGridStyle1}" CellStyle="{StaticResource DataGridCellStyle1}" ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}" RowStyle="{StaticResource DataGridRowStyle1}" Name="usersGrid" 
+                  Margin="0,15,0,0" AutoGenerateColumns="False" Height="250"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding UsersList}">
+            <DataGrid.Columns>
+                <DataGridTextColumn CanUserResize="False" Header="Username" Binding="{Binding UserName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Password" Binding="{Binding Password}"/>
+                <DataGridTextColumn CanUserResize="False" Header="First Name" Binding="{Binding Employee.FirstName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Last Name" Binding="{Binding Employee.LastName}" />
+                <DataGridTextColumn CanUserResize="False" Header="Employee Role" Binding="{Binding Employee.EmployeeRole}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </UserControl>

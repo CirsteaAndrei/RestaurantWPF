@@ -20,11 +20,11 @@
         <localConverter:EmployeeRoleToIndexConverter x:Key="roleToIndexConverter" />
     </UserControl.Resources>
 
-    <StackPanel HorizontalAlignment="Center">
+    <StackPanel HorizontalAlignment="Center" Margin="0,30,0,0">
         <StackPanel.Resources>
             <localConverter:UserConvert x:Key="userConvert" />
         </StackPanel.Resources>
-        <WrapPanel HorizontalAlignment="Center" Margin="0,30,0,0">
+        <WrapPanel HorizontalAlignment="Center" >
             <Button Content="Add" Style="{StaticResource NormalButton}" Command="{Binding AddUserCommand}" Margin="15,0,15,0">
                 <Button.CommandParameter>
                     <MultiBinding Converter="{StaticResource userConvert}">
